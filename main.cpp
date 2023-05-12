@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char** argv) {
     
     //test del funzionamento del costruttore di copia
-    Libro libro1("I Promessi Sposi", "Romanzo", "Manzoni", 3000);
+    Libro libro1("I Promessi Sposi", "Romanzo", "Manzoni", 2000);
     cout << "Libro 1: " << libro1;
     Libro libro2(libro1);
     cout << "Libro 2: " << libro2;
