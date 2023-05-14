@@ -36,9 +36,9 @@ Libro::Libro(const Libro &mioLibro){
 }
 
 Libro::Libro(){
-    Titolo = new char[1];
+    Titolo = new char;
     strcpy(Titolo, "");
-    Genere = new char[1];
+    Genere = new char;
     strcpy(Genere, "");
     Autore = "";
     Pagine = 0;
@@ -92,43 +92,45 @@ bool Libro::operator!=(const Libro& libroDaConfrontare) const {
     } else return true;
 }
 
+Libro Libro::operator=(const Libro& lib){
+    Autore = lib.Autore;
+    Pagine = lib.Pagine;
+    delete[] Genere;
+    Genere = new char[strlen(lib.Genere)+1];
+    strcpy(Genere, lib.Genere);
+    delete[] Titolo;
+    Titolo = new char[strlen(lib.Titolo)+1];
+    strcpy(Titolo, lib.Titolo);
+}
+
 ostream& operator<<(ostream& os, const Libro& lib) {
     os << "Titolo:" << lib.Titolo<<"\t";
     os << "Autore:" << lib.Autore<<endl;
     return os; 
 }
 
-/*istream& operator>>(istream& is, Libro& lib){
-    Libro temp;
-    
-    is >> temp.Titolo;
-    is >> temp.Genere;
-    is >> temp.Autore;
-    is >> temp.Pagine;
-    
-    lib = temp;
-    return is;
-}*/
-
 istream& operator>>(istream& is, Libro& lib){
-    char* titolo = new char[100];
-    char* genere = new char[100];
-    string autore;
-    int pag;
-    cout << "Inserisci titolo: ";
-    cin >> titolo;
-    cout << "\nInserisci genere: ";
-    cin >> genere;
-    cout << "\nInserisci autore: ";
-    cin >> autore;
-    cout << "\nInserisci pagine: ";
-    cin >> pag;
+    Libro temp;
+    char *appoggio = new char[25];
     
-    Libro temp(titolo, genere, autore, pag);
+    is >> appoggio;
+    lib.setTitolo(appoggio);
+    is >> appoggio;
+    lib.setAutore(appoggio);
+    is >> appoggio;
+    lib.setGenere(appoggio);
+    is >> appoggio;
+    lib.setPagine((int)appoggio);
     
-    lib = temp;
-
-    delete[] titolo;
-    delete[] genere;
+    delete[] appoggio;
+    
     return is;
+}
+
+fstream& operator<<(fstream& out, Libro& lib){
+    out << "Titolo: " << lib.Titolo << endl;
+    out << "Genere: " << lib.Genere << endl;
+    out << "Autore: " << lib.Autore << endl;
+    out << "Pagine: " << lib.Pagine << endl;
+    return out;
 }

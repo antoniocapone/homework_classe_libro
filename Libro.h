@@ -12,6 +12,7 @@
 
 #include <string.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #ifndef LIBRO_H
@@ -39,10 +40,12 @@ public:
     string getAutore();
     int getPagine();
     //overload operatori
+    Libro operator=(const Libro&); //overloading operatore di assegnazione
     bool operator==(const Libro &) const;
-    bool operator!=(const Libro&) const;
-    friend ostream& operator<<(ostream&, const Libro&);  
-    friend istream& operator>>(istream&, Libro&);
+    bool operator!=(const Libro&) const; //overloading operatore !=
+    friend ostream& operator<<(std::ostream&, const Libro&);  
+    friend istream& operator>>(istream&, Libro&); //overloading operatore >> per oggetti del tipo cin
+    friend fstream& operator<<(std::fstream&, Libro&); //overloading operatore << per stampa su file .txt
 };
 
 

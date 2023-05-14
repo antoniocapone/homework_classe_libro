@@ -1,0 +1,15 @@
+Titolo: CronacheNarnia
+Genere: Fantastico
+Autore: Rowling
+Pagine: 16677704
+
+Titolo: VitaOsimhen
+Genere: Sportivo
+Autore: Osimhen
+Pagine: 16677704
+
+Titolo: Fondazione
+Genere: Fantascienza
+Autore: Asimov
+Pagine: 16677704
+
